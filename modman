@@ -1,9 +1,9 @@
 src/code/local/H2ODev/OptionalLastname app/code/local/H2ODev/OptionalLastname/
 
-src/code/local/Mage/Customer/Model/Customer.php src/code/local/Mage/Customer/Model/
-src/code/local/Mage/Customer/Model/Address/Abstract.php src/code/local/Mage/Customer/Model/Address/
+src/code/local/Mage/Customer/Model/Customer.php app/code/local/Mage/Customer/Model/Customer.php
+src/code/local/Mage/Customer/Model/Address/Abstract.php app/code/local/Mage/Customer/Model/Address/Abstract.php
 
 # Edit the following line according to your template path
-src/design/frontend/kybook/default/template/customer/widget/name.phtml src/design/frontend/kybook/default/template/customer/widget/
+src/design/frontend/kybook/default/template/customer/widget/name.phtml app/design/frontend/kybook/default/template/customer/widget/
 
 H2ODev_OptionalLastname.xml          app/etc/modules/
