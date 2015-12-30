@@ -27,7 +27,7 @@ machine:
   environment:
     project_name: H2ODev_OptionalLastname
     module_name: OptionalLastname
-    project_version: 1.0.0
+    project_version: 1.0.1
   php:
     version: 5.5.0
 deployment:
