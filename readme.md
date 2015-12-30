@@ -1,4 +1,4 @@
-# Optional Lastname 1.0.1
+# Optional Lastname 1.0.2
 
 ## Installation
 You may want to customize the template folder under `design/frontend` as it needs to be your current template,
