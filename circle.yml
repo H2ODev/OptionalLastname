@@ -4,7 +4,7 @@ checkout:
     - git submodule update --init
 test:
   override:
-    - (cd ~/magento/.modman/$module_name; phpunit)
+    - (cd ~/magento/.modman/OptionalLastname; phpunit)
 dependencies:
   pre:
     # Download MageRun
