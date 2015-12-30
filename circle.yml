@@ -1,0 +1,51 @@
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init
+test:
+  override:
+    - (cd ~/magento/.modman/$module_name; phpunit)
+dependencies:
+  pre:
+    # Download MageRun
+    - wget http://files.magerun.net/n98-magerun-latest.phar -O n98-magerun.phar
+
+    # Make sure MageRun is executable
+    - chmod +x ./n98-magerun.phar
+
+    # Use magerun to install magento.
+    - ./n98-magerun.phar install --dbHost="127.0.0.1" --dbUser="ubuntu" --dbPass="" --dbName="circle_test" --installSampleData=no --useDefaultConfigParams=yes --magentoVersionByName="magento-mirror-1.9.2.1" --installationFolder="magento" --baseUrl="http://magento.localdomain/"
+
+    - mv magento ../magento
+    # Install Modman
+    - bash < <(wget -q --no-check-certificate -O - https://raw.github.com/colinmollenhour/modman/master/modman-installer)
+    - mkdir ../magento/.modman/$module_name --parents
+    - cp -R * ../magento/.modman/$module_name
+    - modman init ../magento
+    - modman link --copy ~/$module_name
+machine:
+  environment:
+    project_name: H2ODev_OptionalLastname
+    module_name: OptionalLastname
+    project_version: 1.0.0
+  php:
+    version: 5.5.0
+deployment:
+  release:
+    branch: release
+    commands:
+      - bash < <(wget -q --no-check-certificate -O - https://raw.github.com/colinmollenhour/modman/master/modman-installer)
+      - wget -O build.phar https://github.com/astorm/MagentoTarToConnect/blob/master/magento-tar-to-connect.phar?raw=true
+      - go get github.com/aktau/github-release
+      - chmod +x build.phar
+      - mkdir build
+      - mkdir release
+      - rm -r .modman
+      - modman init build
+      - modman link --copy ~/$module_name
+      - tar -cf build.tar -C build .
+      #Build
+      - ./build.phar build.config.php
+      - rm -r release/var
+      - github-release release -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -s $GITHUB_TOKEN -t v$project_version --name $CIRCLE_BUILD_NUM
+      - github-release upload -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -s $GITHUB_TOKEN -t v$project_version --name $project_name"-v"$project_version.tgz -f ~/$module_name/release/*
