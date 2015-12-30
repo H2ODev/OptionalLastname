@@ -1,0 +1,27 @@
+<config>
+    <modules>
+        <H2ODev_OptionalLastname>
+        </H2ODev_OptionalLastname>
+    </modules>
+    <admin>
+        <fieldsets>
+            <customer_dataflow>
+                <lastname>
+                    <billing>1</billing>
+                    <shipping>1</shipping>
+                    <required>0</required>
+                    <mapped>1</mapped>
+                </lastname>
+            </customer_dataflow>
+        </fieldsets>
+    </admin>
+    <global>
+        <resources>
+            <h2odev_optionallastname_setup>
+                <setup>
+                    <module>H2ODev_OptionalLastname</module>
+                </setup>
+            </h2odev_optionallastname_setup>
+        </resources>
+    </global>
+</config>

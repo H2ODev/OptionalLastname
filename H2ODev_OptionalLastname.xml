@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <H2ODev_OptionalLastname>
+            <active>true</active>
+            <codePool>local</codePool>
+        </H2ODev_OptionalLastname>
+    </modules>
+</config>
